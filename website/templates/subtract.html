@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block 'content' %}
+
+<section class="hero-section">
+    <div class="hero-title-text-div">
+        <h1>SUBTRACTION</h1>
+       
+        <h1 class="numberimgdiv">
+            <img src="../../static/images/{{ num1 }}.png" alt=""> 
+        &mdash; <img src="../../static/images/{{ num2 }}.png" alt=""> </h1>
+        <div class="resultdiv">
+            {% if result %}
+            <h1 class="result {{ color }}">{{ result }} &nbsp;</h1>
+            {% endif %}
+        </div>
+
+        <div class="formdiv">
+            <form action="{% url 'subtract' %}" method="POST">
+                {% csrf_token %}
+                <input type="text" placeholder="Type Your Answer Here" class="input1" name="answer">
+                <input type="hidden" name="old_num1" value="{{ num1 }}">
+                <input type="hidden" name="old_num2" value="{{ num2 }}">
+
+                <button type="submit" class="formbtn">SUBMIT</button>
+            </form>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
